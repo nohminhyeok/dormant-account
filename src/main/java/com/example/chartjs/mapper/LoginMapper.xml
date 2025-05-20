@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.chartjs.mapper.LoginMapper">
+
+    <select id="selectMemberByIdAndPw" parameterType="map" resultType="map">
+        SELECT *
+        FROM member
+        WHERE id = #{id}
+          AND pw = #{pw}
+          AND active = 'ON'
+    </select>
+    
+    <insert id="insertLoginHistory" parameterType="map">
+        INSERT INTO login_history 
+        (id, logindate)
+        VALUES 
+        (#{id}, NOW())
+    </insert>
+</mapper>

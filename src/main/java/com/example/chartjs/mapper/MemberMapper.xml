@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.chartjs.mapper.MemberMapper">
+	<select id="selectDormantMember" resultType="map">
+	    SELECT *
+	    FROM member m
+	    WHERE m.active = 'ON'
+	    AND (
+	         SELECT MAX(lh.logindate)
+	         FROM login_history lh
+	         WHERE lh.id = m.id
+	    	 ) &lt; DATE_SUB(NOW(), INTERVAL 1 YEAR)
+	</select>
+
+
+    <update id="updateMemberActiveToOff" parameterType="String">
+        UPDATE member
+        SET active = 'OFF'
+        WHERE id = #{id}
+    </update>
+    
+    <insert id="insertJoinMember">
+ 		INSERT INTO member
+ 		(id, pw, email, active)
+ 		VALUES
+ 		(#{id}, #{pw}, #{email}, 'ON')
+    </insert>
+    
+    <select id="selectEmailById" resultType="string">
+    	SELECT email FROM member WHERE id = #{id}
+	</select>
+</mapper>
