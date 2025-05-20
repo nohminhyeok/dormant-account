@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.example.chartjs.mapper.MemberMapper;
 import com.example.chartjs.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +14,6 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Component
 public class MySchedule {
-	@Autowired MemberMapper memberMapper;	
 	@Autowired MemberService memberService;
 	/*
 		@Scheduled(cron =  "0 0 0 1 * *")
@@ -36,11 +34,6 @@ public class MySchedule {
 	@Scheduled(cron = "0 * * * * *")
 	public void dormantAccountScheduler() {
 		log.info("휴면계정 활성화 test");
-		List<Map<String,Object>> dormantList = memberMapper.selectDormantMember();
-		for (Map<String, Object> member : dormantList) {
-		    String id = (String) member.get("id");
-		    memberService.setDormant(id);
-		}
+		memberService.setDormantAccounts();
 	}
-
 }

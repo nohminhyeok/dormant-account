@@ -1,6 +1,9 @@
 package com.example.chartjs.service;
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -18,6 +21,14 @@ public class MemberService {
 	 
 	 public int insertJoinMember(String id, String pw, String email) {
 	        return memberMapper.insertJoinMember(id, pw, email);
+	 }
+	 
+	 public void setDormantAccounts() {
+        List<Map<String, Object>> dormantList = memberMapper.selectDormantMember();
+        for (Map<String, Object> member : dormantList) {
+            String id = (String) member.get("id");
+            setDormant(id); // 아래의 기존 메서드 활용
+        }
 	 }
 	 
 	 public void setDormant(String id) {
