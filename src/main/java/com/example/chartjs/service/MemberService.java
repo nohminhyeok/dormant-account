@@ -27,7 +27,7 @@ public class MemberService {
         List<Map<String, Object>> dormantList = memberMapper.selectDormantMember();
         for (Map<String, Object> member : dormantList) {
             String id = (String) member.get("id");
-            setDormant(id); // 아래의 기존 메서드 활용
+            setDormant(id); // 아래 코드 실행
         }
 	 }
 	 
