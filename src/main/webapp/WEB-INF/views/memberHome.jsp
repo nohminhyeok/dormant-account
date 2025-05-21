@@ -8,6 +8,7 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<h1>test</h1>
+	<h1>memberHome</h1>
+	<a href="/changePw">비밀번호 변경</a>
 </body>
 </html>

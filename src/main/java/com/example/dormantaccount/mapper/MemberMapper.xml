@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.chartjs.mapper.MemberMapper">
+<mapper namespace="com.example.dormantaccount.mapper.MemberMapper">
 	<select id="selectDormantMember" resultType="map">
 	    SELECT *
 	    FROM member m
@@ -29,4 +29,34 @@
     <select id="selectEmailById" resultType="string">
     	SELECT email FROM member WHERE id = #{id}
 	</select>
+	
+	<update id="updateMemberPw" parameterType="String">
+	    UPDATE member
+	    SET pw = #{pw}
+	    WHERE id = #{id}
+	      AND email = #{email}
+	      AND NOT EXISTS (
+	            SELECT 1 FROM pw_history WHERE id = #{id} AND pw = #{pw}
+	      )
+	</update>
+	
+	<insert id="insertPwChangeHistory" parameterType="map">
+		INSERT INTO pw_history
+		(id, pw, change_date)
+		VALUES
+		(#{id}, #{pwck}, NOW())
+	</insert>
+	
+	<delete id="deletePwHistory">
+	    DELETE FROM pw_history
+	    WHERE (id, change_date) NOT IN (
+	        SELECT id, change_date
+	        FROM (
+	            SELECT id, change_date,
+	                   ROW_NUMBER() OVER (PARTITION BY id ORDER BY change_date DESC) AS rn
+	            FROM pw_history
+	        ) t
+	        WHERE t.rn &lt;= 5
+	    )
+	</delete>
 </mapper>

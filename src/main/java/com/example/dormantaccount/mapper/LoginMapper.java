@@ -1,4 +1,4 @@
-package com.example.chartjs.mapper;
+package com.example.dormantaccount.mapper;
 
 import java.util.Map;
 

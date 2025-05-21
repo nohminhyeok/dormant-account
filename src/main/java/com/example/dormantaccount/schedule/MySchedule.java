@@ -1,4 +1,4 @@
-package com.example.chartjs.schedule;
+package com.example.dormantaccount.schedule;
 
 import java.util.List;
 import java.util.Map;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import com.example.chartjs.service.MemberService;
+import com.example.dormantaccount.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,9 +31,15 @@ public class MySchedule {
 	 	로그인 컨트롤러 호출
 	 	로그인시 이력을 입력하는 메서드
 	 */
-	@Scheduled(cron = "0 * * * * *")
+	@Scheduled(cron = "0 0 12 * * *")
 	public void dormantAccountScheduler() {
 		log.info("휴면계정 활성화 test");
 		memberService.setDormantAccounts();
+	}
+	
+	@Scheduled(cron = "1 * * * * *")
+	public void removePwAccount() {
+		log.info("비밀번호 변경 기록 삭제 완료");
+		memberService.removePwAccount();
 	}
 }

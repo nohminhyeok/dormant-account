@@ -9,10 +9,12 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
+	
 	<artifactId>chartjs</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>chartjs</name>
+	<name>dormant-account</name>
+
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -31,7 +33,7 @@
 		<java.version>17</java.version>
 	</properties>
 	<dependencies>
-		
+
 		<!-- 내장형 톰켓 JSP 라이브러리 -->
 		<dependency>
 		    <groupId>org.apache.tomcat.embed</groupId>
@@ -47,12 +49,14 @@
 		    <groupId>org.glassfish.web</groupId>
 		    <artifactId>jakarta.servlet.jsp.jstl</artifactId>
 		</dependency>
+
 		<!-- email 관련 -->
 		<dependency>
 		    <groupId>org.springframework.boot</groupId>
 		    <artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
 		
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>

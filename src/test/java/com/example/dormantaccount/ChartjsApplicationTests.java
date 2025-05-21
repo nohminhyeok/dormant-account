@@ -1,4 +1,4 @@
-package com.example.chartjs;
+package com.example.dormantaccount;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

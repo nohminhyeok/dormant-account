@@ -1,4 +1,4 @@
-package com.example.chartjs.service;
+package com.example.dormantaccount.service;
 
 import java.util.HashMap;
 import java.util.List;
@@ -7,8 +7,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.chartjs.mapper.LoginMapper;
-import com.example.chartjs.mapper.MemberMapper;
+import com.example.dormantaccount.mapper.LoginMapper;
+import com.example.dormantaccount.mapper.MemberMapper;
 
 @Service
 public class LoginService {
