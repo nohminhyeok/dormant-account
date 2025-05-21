@@ -22,7 +22,6 @@ public class LoginController {
 	
 	@GetMapping("/login")
 	public String login() {
-		
 		return "/login";
 	}
 	
@@ -41,7 +40,6 @@ public class LoginController {
 
     @GetMapping("/joinMember")
     public String joinMember() {
-    	
     	return "/joinMember";
     }
     
@@ -60,7 +58,6 @@ public class LoginController {
 	
     @GetMapping("/memberHome")
     public String memberHome() {
-    	
     	return "/memberHome";
     }
     
